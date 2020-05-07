@@ -25,3 +25,7 @@ function generatePassword() {}
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+
+Generator Functions - these functions will work together to actually generate the password
+
+
