@@ -64,16 +64,14 @@ function generatePassword() {
     }
 
     console.log(allowedChar);
-  }
-
+  
   //we now have an array of letters to choose from, so we need a for loop to create the actual password. Need to pull a random character from allowedChar as many times as the length of lencth.
-    for (i = 0, i < length, i++) {
-      let randomChar = Math.floor(Math.random(allowedChar) * length)
+    for (i = 0; i < length; i++) {
+      let randomChar = Math.floor(Math.random(allowedChar))
+      console.log(randomChar)
     }
-  }
   
 
-  var item = items[Math.floor(Math.random() * items.length)];
 } 
 
 // Add event listener to generate button
