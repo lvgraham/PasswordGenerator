@@ -8,6 +8,7 @@ function writePassword() {
   passwordText.value = password;
 }
 
+//possible password characters
 let upperCaseArr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 let lowerCaseArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'q', 'x', 'y', 'z'];
 let specialCharArr = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '{', '}'];
@@ -44,13 +45,15 @@ function getOptions () {
   }
 }
 
+// Generator Functions - these functions will work together to actually generate the password
 function generatePassword() {
   getOptions();
-  var allowedChar = []
+  //this will generate the array allowedChar for the characters to work with to create the password
+  let allowedChar = []
   if (upperCase === true) {
-      allowedChar = allowedChar.concat(upcerCaseArr);
+      allowedChar = allowedChar.concat(upperCaseArr);
     }
-  if (lowerCase) === true) {
+  if (lowerCase === true) {
       allowedChar = allowedChar.concat(lowerCaseArr);
     }
   if (specialChar === true) {
@@ -60,21 +63,18 @@ function generatePassword() {
       allowedChar = allowedChar.concat(numbersArr);
     }
 
-    console.log(allowedChar)
-
-    for (let i = 0; i < length; i++) {
-      let randomText = Math.floor(Math.random() * passwordArr.length);
-      personalPass.push(passwordArr[randoIndx]);
-  
-    };
-
+    console.log(allowedChar);
   }
+
+  //we now have an array of letters to choose from, so we need a for loop to create the actual password. Need to pull a random character from allowedChar as many times as the length of lencth.
+    for (i = 0, i < length, i++) {
+      let randomChar = Math.floor(Math.random(allowedChar) * length)
+    }
+  }
+  
+
+  var item = items[Math.floor(Math.random() * items.length)];
 } 
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword());
-
-
-// Generator Functions - these functions will work together to actually generate the password
-
-
