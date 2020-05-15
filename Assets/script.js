@@ -2,11 +2,7 @@
 let generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword() {
-  let password = generatePassword();
-  let passwordText = document.querySelector("#password");
-  passwordText.value = password;
-}
+
 
 //possible password characters
 let upperCaseArr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -15,18 +11,19 @@ let specialCharArr = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-'
 let numbersArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',];
 
 //variables for prompts
-let length;
+let numOfLetters;
 let upperCase;
 let lowerCase;
 let specialChar;
 let numbers;
+let randomChar = '';
+let allowedChar = []
 
 //gathering information from user to generate password
 function getOptions () {
-  let length = prompt ('how many characters do you want?')
-  length = parseInt(length);
+ numOfLetters = prompt ('how many characters do you want?')
 
-  if (length > 128 || length < 8) {
+  if (numOfLetters > 128 || numOfLetters < 8) {
     alert ('password needs to be > 8 or < 128')
   }
   upperCase = confirm('do you want upper case letters?')
@@ -34,7 +31,7 @@ function getOptions () {
   specialChar = confirm('do you want special characters?')
   numbers = confirm('do you want numbers?')
 
-  console.log(length);
+  console.log(numOfLetters);
   console.log(upperCase);
   console.log(lowerCase);
   console.log(specialChar);
@@ -49,7 +46,6 @@ function getOptions () {
 function generatePassword() {
   getOptions();
   //this will generate the array allowedChar for the characters to work with to create the password
-  let allowedChar = []
   if (upperCase === true) {
       allowedChar = allowedChar.concat(upperCaseArr);
     }
@@ -65,15 +61,29 @@ function generatePassword() {
 
     console.log(allowedChar);
   
-  //we now have an array of letters to choose from, so we need a for loop to create the actual password. Need to pull a random character from allowedChar as many times as the length of lencth.
-  function getRandomChar() {
-  for (i = 0; i < length; i++) {
-      randomChar += allowedChar[Math.floor(Math.random() * allowedChar.length)];
-    }
-  }
+ 
+ //we now have an array of letters to choose from, so we need a for loop to create the actual password. Need to pull a random character from allowedChar as many times as the numOfLetters of lencth.
 
-  return getRandomChar()
-} 
+}
+
+function getRandomChar() {
+  console.log(numOfLetters);
+  for (let i = 0; i < numOfLetters; i++) {
+      console.log('hi');
+      randomChar += allowedChar[Math.floor(Math.random() * allowedChar.length)];
+      // console.log(randomChar);
+    }
+    return randomChar;
+}
+
+
+function writePassword() {
+  generatePassword();
+  let password = getRandomChar();
+  console.log(password);
+  let passwordText = document.querySelector("#password");
+  passwordText.value = password;
+}
 
 
 // Add event listener to generate button
